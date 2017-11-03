@@ -1,0 +1,79 @@
+// 转换px为rem, 字体使用px, 其它单位均用rem
+@mixin px2rem($property, $px-values, $baseline-px:75px, $support-for-ie:false) {
+  //Conver the baseline into rems
+  $baseline-rem: $baseline-px / 1rem * 1; //Print the first line in pixel values
+  @if $support-for-ie {
+    #{$property}: $px-values;
+  } //if there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values)=="number" {
+    #{$property}: $px-values / $baseline-rem;
+  }
+  @else {
+    //Create an empty list that we can dump values into
+    $rem-values: ();
+    @each $value in $px-values {
+      // If the value is zero or not a number, return it
+      @if $value==0 or type-of($value) !="number" {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    } // Return the property and its list of converted values
+    #{$property}: $rem-values;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  text-align: center;
+  background-color: #f2284b;
+  h2 {
+    img {
+      @include px2rem(width, 750px)
+    }
+  }
+}
+
+.list__wrapper {
+  @include px2rem(padding, 10px);
+  background-color: #f2284b;
+  .list {
+    li {
+      width: 100%;
+      background-color: #ffffff;
+      display: table;
+      margin-bottom: 1px;
+      .li-img {
+        display: table-cell;
+        @include px2rem(width, 176px);
+        @include px2rem(height, 176px);
+        @include px2rem(padding-top, 16px);
+        @include px2rem(padding-bottom, 16px);
+
+        img {
+          vertical-align: top;
+          @include px2rem(width, 176px);
+          @include px2rem(height, 176px);
+        }
+      }
+      .li-content {
+        display: table-cell;
+        vertical-align: top;
+        @include px2rem(padding-top, 16px);
+        @include px2rem(padding-left, 16px);
+        .product-price {  
+          @include px2rem(padding, (h1: 2, h2: 1.5, h3: 1.2));
+
+
+        }
+      }
+      .go {
+        position: absolute;
+      }
+
+    }
+  }
+}
+
