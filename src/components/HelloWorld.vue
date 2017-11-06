@@ -10,7 +10,7 @@
           <div class="li-content">
             <div class="product-title">{{ item.poductName }}</div>
             <div class="product-price">
-              <span class="tag">双11价</span><span class="price">{{ item.price }}</span>
+              <span class="tag">双11价</span><span class="price">￥{{ item.price }}</span>
             </div>
             <div class="product-tips">{{ item.activityType }}</div>
           </div>

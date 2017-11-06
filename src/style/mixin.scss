@@ -21,6 +21,9 @@
   }
 }
 
+$color:#f2284b;
+$tagColor: #eb7029;
+
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +31,7 @@
 
 .header {
   text-align: center;
-  background-color: #f2284b;
+  background-color: $color;
   h2 {
     img {
       @include px2rem(width, 750px)
@@ -38,9 +41,10 @@
 
 .list__wrapper {
   @include px2rem(padding, 10px);
-  background-color: #f2284b;
+  background-color: $color;
   .list {
     li {
+      position: relative;
       width: 100%;
       background-color: #ffffff;
       display: table;
@@ -64,13 +68,35 @@
         @include px2rem(padding-top, 16px);
         @include px2rem(padding-left, 16px);
         .product-price {  
-          @include px2rem(padding, (h1: 2, h2: 1.5, h3: 1.2));
-
-
+          @include px2rem(padding-top, 12px);
+          @include px2rem(padding-bottom, 12px);
+          .tag {
+            background-color: $color;
+            color: #ffffff;
+            @include px2rem(padding-left, 8px);
+            @include px2rem(padding-right, 8px);
+          }
+          .price {
+            color: $color;
+            font-weight: bolder;
+            font-size:28px;
+          }
+        }
+        .product-tips {
+          color: $tagColor
         }
       }
       .go {
         position: absolute;
+        @include px2rem(bottom, 16px);
+        @include px2rem(right, 24px);
+        @include px2rem(padding-top, 12px);
+        @include px2rem(padding-bottom, 12px);
+        @include px2rem(padding-left, 32px);
+        @include px2rem(padding-right, 32px);
+        @include px2rem(border-radius, 4px);
+        background: $color;
+        color: #fff;
       }
 
     }
